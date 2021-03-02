@@ -35,7 +35,10 @@ public class FragmentA extends Fragment {
             public void onClick(View bv) {
                 String input = etCelcius.getText().toString();
                 //stuur naar fragment b
-                listener.onInputASent(input);
+                int celsius = Integer.parseInt(input);
+                int farhenheit = (celsius*9/5)+32;
+                String output = String.valueOf(farhenheit);
+                listener.onInputASent(output);
             }
         });
 

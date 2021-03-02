@@ -8,7 +8,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity
         implements FragmentA.FragmentAListener, FragmentB.FragmentBListener {
 
-    // TODO 1: Zorg ervoor dat je getallen kan ingeven en dat de app effectief de omrekening maakt
+    // DONE 1: Zorg ervoor dat je getallen kan ingeven en dat de app effectief de omrekening maakt
     //  van Celsius naar Fahrenheit en omgekeerd (bij een druk op de desbetreffende knop). (eenvoudig)
 
     // TODO 2: Voeg nog een derde fragment toe voor temperaturen in Kelvin en zorg ervoor
