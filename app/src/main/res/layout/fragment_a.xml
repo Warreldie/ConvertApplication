@@ -8,12 +8,12 @@
     android:padding="16dp"
     tools:context=".FragmentA">
     <EditText
-        android:id="@+id/et_kelvin"
+        android:id="@+id/et_celsius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/button_to_fahrenheit"
+        android:id="@+id/button_to_fahrenheit_kelvin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

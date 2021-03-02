@@ -13,10 +13,11 @@ import android.widget.EditText;
 public class FragmentA extends Fragment {
 
     public interface FragmentAListener{
-        void onInputASent(String input);
+        void onInputAFSent(String input);
+        void onInputAKSent(String input);
     }
 
-    private EditText etCelcius;
+    private EditText etCelsius;
     private FragmentAListener listener;
 
     public FragmentA() {
@@ -29,16 +30,21 @@ public class FragmentA extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_a, container, false);
 
-        etCelcius = v.findViewById(R.id.et_kelvin);
-        v.findViewById(R.id.button_to_fahrenheit).setOnClickListener(new View.OnClickListener() {
+        etCelsius = v.findViewById(R.id.et_celsius);
+        v.findViewById(R.id.button_to_fahrenheit_kelvin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View bv) {
-                String input = etCelcius.getText().toString();
-                //stuur naar fragment b
+                //Incoming Celsius
+                String input = etCelsius.getText().toString();
                 int celsius = Integer.parseInt(input);
-                int farhenheit = (celsius*9/5)+32;
-                String output = String.valueOf(farhenheit);
-                listener.onInputASent(output);
+                //Celsius to Fahrenheit
+                int fahrenheit = (celsius*9/5)+32;
+                String outputF = String.valueOf(fahrenheit);
+                listener.onInputAFSent(outputF);
+                //Celsius to Kelvin
+                int kelvin = (int) (celsius+273.15);
+                String outputK = String.valueOf(kelvin);
+                listener.onInputAKSent(outputK);
             }
         });
 
@@ -47,7 +53,7 @@ public class FragmentA extends Fragment {
     }
 
     public void updateCelsius(String input){
-        etCelcius.setText(input);
+        etCelsius.setText(input);
     }
 
     @Override

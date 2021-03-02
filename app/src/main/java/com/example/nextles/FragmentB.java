@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 public class FragmentB extends Fragment {
 
     public interface FragmentBListener {
-        void onInputBSent(String input);
+        void onInputBCSent(String input);
+        void onInputBKSent(String input);
     }
 
     private EditText etFahrenheit;
@@ -32,16 +33,19 @@ public class FragmentB extends Fragment {
         v.findViewById(R.id.button_to_celsius).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View bv) {
+                //Incoming Fahrenheit
                 String input = etFahrenheit.getText().toString();
-                //stuur naar fragment b
-                int farhenheit = Integer.parseInt(input);
-                int celsius = (farhenheit-32)* 5 / 9;
-                String output = String.valueOf(celsius);
-                listener.onInputBSent(output);
+                int fahrenheit = Integer.parseInt(input);
+                //Fahrenheit to Celsius
+                int celsius = (fahrenheit-32)* 5 / 9;
+                String outputC = String.valueOf(celsius);
+                listener.onInputBCSent(outputC);
+                //Fahrenheit to Kelvin
+                int kelvin = (int) (fahrenheit + 459.67)*5/9;
+                String outputK = String.valueOf(kelvin);
+                listener.onInputBKSent(outputK);
             }
         });
-
-
         return v;
     }
 

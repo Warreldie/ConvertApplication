@@ -12,7 +12,10 @@ import androidx.fragment.app.Fragment;
 public class FragmentC extends Fragment {
 
     public interface FragmentCListener {
-        void onInputCSent(String input);
+        //Kelvin to Fahrenheit output
+        void onInputCFSent(String input);
+        //Kelvin to Celsius output
+        void onInputCCSent(String input);
     }
 
     private EditText etKelvin;
@@ -29,19 +32,23 @@ public class FragmentC extends Fragment {
         View v = inflater.inflate(R.layout.fragment_c, container, false);
 
         etKelvin = v.findViewById(R.id.et_kelvin);
-        v.findViewById(R.id.button_to_fahrenheit).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.button_to_fahrenheit_celsius).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View bv) {
+                //Kelvin input catch
                 String input = etKelvin.getText().toString();
-                //stuur naar fragment b
                 int kelvin = Integer.parseInt(input);
-                int farhenheit = (kelvin);//*9/5)+32;
-                String output = String.valueOf(farhenheit);
-                listener.onInputCSent(output);
+                //Kelvin to Fahrenheit
+                int fahrenheit = (int) (((kelvin - 273.15) * 9/5) +32);//(K − 273.15) × 9/5 + 32
+                String outputF = String.valueOf(fahrenheit);
+                listener.onInputCFSent(outputF);
+                //Kelvin to Celsius
+                int celsius = (int) (kelvin-273.15);
+                String outputC = String.valueOf(celsius);
+                listener.onInputCCSent(outputC);
             }
+
         });
-
-
         return v;
     }
 

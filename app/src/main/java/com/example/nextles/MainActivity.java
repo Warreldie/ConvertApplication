@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity
 
     // TODO 2: Voeg nog een derde fragment toe voor temperaturen in Kelvin en zorg ervoor
     //  dat alle temperaturen automatisch berekend worden met een druk op de knop. (eenvoudig)
+
     //TODO 2b: Als je wil, kan je eens nadenken of je code op één of andere manier kan abstraheren
     // in plaats van 3 klassen te hebben die als twee druppels water op elkaar lijken. (gevorderd)
 
@@ -43,17 +44,32 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onInputASent(String input) {
+    public void onInputAFSent(String input) {
+
         fragmentB.updateFahrenheit(input);
     }
 
     @Override
-    public void onInputBSent(String input) {
+    public void onInputAKSent(String input){
+        fragmentC.updateKelvin(input);
+    }
+
+    @Override
+    public void onInputBCSent(String input) {
+
         fragmentA.updateCelsius(input);
     }
+    @Override
+    public void onInputBKSent(String input){
+        fragmentC.updateKelvin(input);
+    }
 
     @Override
-    public void onInputCSent(String input) {
+    public void onInputCFSent(String input) {
         fragmentB.updateFahrenheit(input);
+    }
+    @Override
+    public void onInputCCSent(String input) {
+        fragmentA.updateCelsius(input);
     }
 }
