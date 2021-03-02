@@ -2,24 +2,23 @@ package com.example.nextles;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-public class FragmentA extends Fragment {
+import androidx.fragment.app.Fragment;
 
-    public interface FragmentAListener{
-        void onInputASent(String input);
+public class FragmentC extends Fragment {
+
+    public interface FragmentCListener {
+        void onInputCSent(String input);
     }
 
-    private EditText etCelcius;
-    private FragmentAListener listener;
+    private EditText etKelvin;
+    private FragmentCListener listener;
 
-    public FragmentA() {
+    public FragmentC() {
         // Required empty public constructor
     }
 
@@ -27,18 +26,18 @@ public class FragmentA extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_a, container, false);
+        View v = inflater.inflate(R.layout.fragment_c, container, false);
 
-        etCelcius = v.findViewById(R.id.et_kelvin);
+        etKelvin = v.findViewById(R.id.et_kelvin);
         v.findViewById(R.id.button_to_fahrenheit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View bv) {
-                String input = etCelcius.getText().toString();
+                String input = etKelvin.getText().toString();
                 //stuur naar fragment b
-                int celsius = Integer.parseInt(input);
-                int farhenheit = (celsius*9/5)+32;
+                int kelvin = Integer.parseInt(input);
+                int farhenheit = (kelvin);//*9/5)+32;
                 String output = String.valueOf(farhenheit);
-                listener.onInputASent(output);
+                listener.onInputCSent(output);
             }
         });
 
@@ -46,19 +45,19 @@ public class FragmentA extends Fragment {
         return v;
     }
 
-    public void updateCelsius(String input){
-        etCelcius.setText(input);
+    public void updateKelvin(String input){
+        etKelvin.setText(input);
     }
 
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
-        if(context instanceof FragmentAListener){
-            listener = (FragmentAListener)context;
+        if(context instanceof FragmentCListener){
+            listener = (FragmentCListener)context;
         }
         else {
             throw new RuntimeException(
-                    String.format("%s must implement FragmentAListener", context.toString())
+                    String.format("%s must implement FragmentCListener", context.toString())
             );
         }
     }

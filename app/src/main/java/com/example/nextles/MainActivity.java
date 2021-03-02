@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
-        implements FragmentA.FragmentAListener, FragmentB.FragmentBListener {
+        implements FragmentA.FragmentAListener, FragmentB.FragmentBListener, FragmentC.FragmentCListener {
 
     // DONE 1: Zorg ervoor dat je getallen kan ingeven en dat de app effectief de omrekening maakt
     //  van Celsius naar Fahrenheit en omgekeerd (bij een druk op de desbetreffende knop). (eenvoudig)
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentA fragmentA;
     private FragmentB fragmentB;
+    private FragmentC fragmentC;
 
 
 
@@ -32,10 +33,12 @@ public class MainActivity extends AppCompatActivity
 
         fragmentA = new FragmentA();
         fragmentB = new FragmentB();
+        fragmentC = new FragmentC();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.layout_a, fragmentA)
                 .replace(R.id.layout_b, fragmentB)
+                .replace(R.id.layout_c, fragmentC)
                 .commit();
     }
 
@@ -47,5 +50,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onInputBSent(String input) {
         fragmentA.updateCelsius(input);
+    }
+
+    @Override
+    public void onInputCSent(String input) {
+        fragmentB.updateFahrenheit(input);
     }
 }
